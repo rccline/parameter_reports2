@@ -1,17 +1,8 @@
-# parameter_reports2
-Example of Parameterized RMarkdown Reports
+# Parameterized Reports  
 
-The script *script/iterate.R* is intended to create parameterized reports from */docs/Table-Params.Rmd*  and send the output files to */output* folder.  
+Parameterized RMarkdown Reports using the *purrr* package are great time savers for iterative reporing.
 
-There is an error in lines 25 to 32 in iterate.R when creating the *params* parameter.   
+The script *script/iterate.R* creates parameterized reports from */docs/Table-Params.Rmd* for each element in a list of parameters and send the output files to */output* folder.  
 
-```
-reports <- tibble(
-  input = here("doc-params", "Table-Params.Rmd"),
-  # output_file = stringr::str_c("../output/", team, "-.html"),
-  output_file = stringr::str_c(output_dir,"/", team, "-.html"),
-  params = map(nba, ~list(team = .))
-  # params = list(teams=teaml)
-) 
+This parameterized report was created following the example in *Parameterized Reporting with R*.  [Click here to view the tutorial created by David Keyes](https://vimeo.com/468759680) 
 
-```  
