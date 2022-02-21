@@ -24,7 +24,9 @@ library(openintro)
 ```
 
 ### Introduction  
-This is a parameterized R Markdown document created in RMarkdown. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.  A parameterized report is created using the dataset *nba_players_19* from the R *openintro package*.    
+This is a parameterized R Markdown document created in RMarkdown. This parameterized report is created using the dataset *nba_players_19* from the R *openintro package*.   
+
+This example of parameterized reports was created relying on a tutorial presented by [David Keyes and *Rfortherestofus*](https://vimeo.com/468759680).
 
 This specific example of parameterized reports covers the NBA team members of the `r params$team` team.  
 
@@ -33,12 +35,6 @@ The dataset is split into groups by team using *group_split()* function from the
 <br> 
 
 ### The `r params$team` NBA Team for the year 2019.    
-
-
-
- 
-
-
 
 ```{r eval=FALSE}
 
@@ -88,8 +84,6 @@ nba %>%
 ```
 
 
-
-
 ```{r team-members-table}
 library(gt)
 nba %>% 
@@ -100,45 +94,5 @@ nba %>%
 #    subtitle = md("`r params$team`")
   )
 
-```
-
-```{r}
-teamnames <- unique(nba$team)
-# paste0(teams, ".csv")
-
-# filesout  to output folder
-filesout <- here("output", paste0(teamnames, ".html") )
-
-head(filesout)
-```
-
-The *map2()* function is called from the *purrr package* 
-
-```{r}
-### Modifying Tracts for Params Output
-
-nba_teams <- nba %>%
-  dplyr::filter(team==params$team) 
-```
-
-
-```{r}
-gt::gt(nba_teams)
-```
-
-
-```{r results='hide', eval=FALSE}
-library(here)
-library(rmarkdown)
-fs::dir_create(here("output"))
-map2(teams, filesout, write_csv)
-
-map2(teams, filesout, render)
-```
-
-```{r eval=FALSE}
-library(fs)
-library(here)
-fs::file_delete(here("output", "."))
 ```
 
